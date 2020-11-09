@@ -44,16 +44,22 @@ function loadFile(){
     <div id="data">Loading...</div>
 
     <script language="javascript">
-    $.getJSON( "songs.json", function( data ) {
-        $.each(data.song, function (i,s){
-            var tableRow = "<tr>" + "<td>" + s.name + "</td>" + "<td>" + s.album
-             + "</td>" + "<td>" + s.artist + "</td>" + "<td>" + s.genre 
-             + "</td>" + "<td>" + s.year + "</td>" + "</tr>"
-            $(tableRow).appendTo("#data tbody");
+    
+    $(function(){
+        var song = [];
+    
+        $.getJSON( "songs.json", function( data ) {
+            $.each(data.song, function (i,s){
+                var tableRow = "<tr>" + "<td>" + s.name + "</td>" + "<td>" + s.album
+                + "</td>" + "<td>" + s.artist + "</td>" + "<td>" + s.genre 
+                + "</td>" + "<td>" + s.year + "</td>" + "</tr>"
+                $(tableRow).appendTo("#data tbody");
+            });
+            // str = JSON.stringify(data);
+            // document.write(str);
+            // strHTML= "";
         });
-        // str = JSON.stringify(data);
-        // document.write(str);
-        // strHTML= "";
+
     });
 
     </script>
