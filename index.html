@@ -45,12 +45,36 @@ function loadFile(){
 
     <script language="javascript">
     $.getJSON( "songs.json", function( data ) {
-        str = JSON.stringify(data);
-        document.write(str);
-        strHTML= "";
-    })
+        $.each(data.song, function (i,s){
+            var tableRow = "<tr>" + "<td>" + s.name + "</td>" + "<td>" + s.album
+             + "</td>" + "<td>" + s.artist + "</td>" + "<td>" + s.genre 
+             + "</td>" + "<td>" + s.year + "</td>" + "</tr>"
+            $(tableRow).appendTo("#data tbody");
+        });
+        // str = JSON.stringify(data);
+        // document.write(str);
+        // strHTML= "";
+    });
 
     </script>
+
+    <div class="wrapper">
+        <div class="profile">
+            <table id= "data" border="2">
+            <thead>
+                    <th>Song Name</th>
+                    <th>Album</th>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th>year</th>
+            </thead>
+                <tbody>
+        
+                </tbody>
+           </table>
+        
+        </div>
+    </div>
 
 </body>
 
