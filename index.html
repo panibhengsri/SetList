@@ -5,8 +5,7 @@
     <title>Song Selector</title>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <style>
-        ul 
-        {
+        ul {
             list-style-type: none;
         }
     </style>
@@ -17,8 +16,7 @@
                 console.log("here");
                 var check ="";
                 var op = document.getElementById("selection").selectedIndex;
-                $.get( "https://panibhengsri.github.io/comp20/songs.json", 
-                function( data ) {
+                $.get( "https://panibhengsri.github.io/SetList/songs.json", function( data ) {
                 
                     strHTML= "";
 
@@ -84,7 +82,7 @@
 	<script language="javascript">
         
 
-        $.get( "https://panibhengsri.github.io/comp20/songs.json", 
+        $.get( "https://panibhengsri.github.io/SetList/songs.json", 
             function( data ) {
                 strHTML= "";
 
