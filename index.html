@@ -10,7 +10,7 @@
     $(function(){
         var song = [];
     
-        $.getJSON( "songs.json", function( data ) {
+        $.getJSON( 'songs.json', function( data ) {
             $.each(data.song, function (i,s){
                 var tableRow = "<tr>" + "<td>" + s.name + "</td>" + "<td>" + s.album
                 + "</td>" + "<td>" + s.artist + "</td>" + "<td>" + s.genre 
@@ -31,11 +31,11 @@
         <div class="profile">
             <table id= "data" border="2">
             <thead>
-                    <th>Song Name</th>
+                    <th>Name</th>
                     <th>Album</th>
                     <th>Artist</th>
                     <th>Genre</th>
-                    <th>year</th>
+                    <th>Year</th>
             </thead>
                 <tbody>
         
