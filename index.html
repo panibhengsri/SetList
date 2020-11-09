@@ -13,35 +13,35 @@
 
             function genreClick(){
                 console.log("in function");
-                var check ="";
+                var selection ="";
                 var op = document.getElementById("selection").selectedIndex;
                 $.get( "https://panibhengsri.github.io/SetList/songs.json", function( data ) {
                 
                     strHTML= "";
 
-                    data.forEach(function(song) { 
+                    data.forEach(function(s) { 
                         if (op == 0){
                             strHTML = strHTML + "<ul>" 
-                            + "<li><strong>" + song.name + "</strong></li>"
-                            + "<li>" + "Album: " + song.album + "</li>"
-                            + "<li>" + "Artist: " + song.artist + "</li>"
-                            + "<li>" + "Genre: " + song.genre + "</li>"
-                            + "<li>" + "Released: " + song.year + "</li>"
+                            + "<li><strong>" + s.name + "</strong></li>"
+                            + "<li>" + "Album: " + s.album + "</li>"
+                            + "<li>" + "Artist: " + s.artist + "</li>"
+                            + "<li>" + "Genre: " + s.genre + "</li>"
+                            + "<li>" + "Released: " + s.year + "</li>"
                             +"</ul>";
                         } else {
                             console.log("change");
                             selection = document.getElementById("selection").options[op].text;
                             console.log("selection: " + selection);
-                            console.log("genre: " + song.genre)
-                            console.log(song.genre.localeCompare(selection) == 0);
-                            if (song.genre.localeCompare(selection) == 0){
-                                console.log(song.Genre);
+                            console.log("genre: " + s.genre)
+                            console.log(s.genre.localeCompare(selection) == 0);
+                            if (s.genre.localeCompare(selection) == 0){
+                                console.log(s.genre);
                                 strHTML = strHTML + "<ul>" 
-                                + "<li><strong>" + song.title + "</strong></li>"
-                                + "<li>" + "Album: " + song.album + "</li>"
-                                + "<li>" + "Artist: " + song.artist + "</li>"
-                                + "<li>" + "Genre: " + song.genre + "</li>"
-                                + "<li>" + "Released: " + song.year + "</li>"
+                                + "<li><strong>" + s.title + "</strong></li>"
+                                + "<li>" + "Album: " + s.album + "</li>"
+                                + "<li>" + "Artist: " + s.artist + "</li>"
+                                + "<li>" + "Genre: " + s.genre + "</li>"
+                                + "<li>" + "Released: " + s.year + "</li>"
                                 +"</ul>";
                             }
                         }  
@@ -74,22 +74,20 @@
 	<script language="javascript">
         
 
-        $.get( "https://panibhengsri.github.io/SetList/songs.json", 
-            function( data ) {
-                strHTML= "";
+        $.get( "https://panibhengsri.github.io/SetList/songs.json", function( data ) {
+            strHTML= "";
 
-            data.forEach(function(song) { 
+            data.forEach(function(s) { 
             strHTML = strHTML + "<ul>" 
-                    + "<li><strong>" + song.title + "</strong></li>"
-                    + "<li>" + "Album: " + song.album + "</li>"
-                    + "<li>" + "Artist: " + song.artist + "</li>"
-                    + "<li>" + "Genre: " + song.genre + "</li>"
-                    + "<li>" + "Released: " + song.year + "</li>"
+                    + "<li><strong>" + s.title + "</strong></li>"
+                    + "<li>" + "Album: " + s.album + "</li>"
+                    + "<li>" + "Artist: " + s.artist + "</li>"
+                    + "<li>" + "Genre: " + s.genre + "</li>"
+                    + "<li>" + "Released: " + s.year + "</li>"
                     +"</ul>";
-                }) 
+            }) 
         document.getElementById("display").innerHTML += strHTML;  
         })
-
 
     </script>
 </body>
