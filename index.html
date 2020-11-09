@@ -1,3 +1,4 @@
+<!--- URL: https://panibhengsri.github.io/SetList/--->
 <!doctype html>
 <html>
 <head>
@@ -7,6 +8,11 @@
     <style>
         ul {
             list-style-type: none;
+        }
+        li {
+            display: block;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            color: grey;
         }
     </style>
         <script language="javascript">
@@ -37,7 +43,7 @@
                             if (s.genre.localeCompare(selection) == 0){
                                 console.log(s.genre);
                                 strHTML = strHTML + "<ul>" 
-                                + "<li><strong>" + s.title + "</strong></li>"
+                                + "<li><strong>" + s.name + "</strong></li>"
                                 + "<li>" + "Album: " + s.album + "</li>"
                                 + "<li>" + "Artist: " + s.artist + "</li>"
                                 + "<li>" + "Genre: " + s.genre + "</li>"
@@ -79,14 +85,14 @@
 
             data.forEach(function(s) { 
             strHTML = strHTML + "<ul>" 
-                    + "<li><strong>" + s.title + "</strong></li>"
+                    + "<li><strong>" + s.name + "</strong></li>"
                     + "<li>" + "Album: " + s.album + "</li>"
                     + "<li>" + "Artist: " + s.artist + "</li>"
                     + "<li>" + "Genre: " + s.genre + "</li>"
                     + "<li>" + "Released: " + s.year + "</li>"
                     +"</ul>";
             }) 
-            
+
         document.getElementById("display").innerHTML += strHTML;  
         })
 
