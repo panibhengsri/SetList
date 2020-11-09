@@ -10,17 +10,39 @@ function loadFile(){
     console.log("1");
     request.open("GET, ajax/songs.json");
     console.log("2");
-    re
+    request.onreadystatechange = function (){
+        console.log("3");
+        if (request.readyState == 4 && request.status == 200){
+            result = request.responseText;
+            songs = JSON.parse(result);
+
+            strHTML = "<ul>";
+            songs.array.forEach(function(song) {
+                strHTML += "<li>" + "name: " + song.name + " , album: " + song.album + "<li>";
+            });
+            strHTML = "<ul>";
+            document.getElementById("data").innerHTML = strHTML;
+
+            
+        } else if (request.readState == 4 && request.status != 200){
+            document.getElementById("data").innerHTML = "Something is wrong!  Check the logs to see where this went off the rails";
+        } else if (request.readyState == 3) {
+            document.getElementById("data").innerHTML = "Too soon!  Try again";
+        }
+    }
+
+    request.send();
+    console.log("4");
 }
-
-
 
 </script>
 </head>
 
-<body>
+<body onload = "loadFile()">
 
     <h1> hello </h1>
+    <div id="data">Loading...</div>
+    
     <script language="javascript">
     $.get( "ajax/songs.json", function( data ) {
         str = JSON.stringify(data);
