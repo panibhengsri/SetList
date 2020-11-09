@@ -1,47 +1,106 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Set List using JSON</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <meta charset="utf-8">
+    <title>Song Selector</title>
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <style>
+        ul 
+        {
+            list-style-type: none;
+        }
+    </style>
+        <script language="javascript">
 
-<script>
-    
-    $(function(){
-        var songs = [];
-        $.getJSON( 'songs.json', function( data ) {
-            $.each(data.song, function (i,s){
-                var tableRow = "<tr>" + "<td>" + s.name + "</td>" + "<td>" + s.album
-                + "</td>" + "<td>" + s.artist + "</td>" + "<td>" + s.genre 
-                + "</td>" + "<td>" + s.year + "</td>" + "</tr>"
-                $(tableRow).appendTo("#data tbody");
-            });
-        });
-    });
+            function genreClick()
+            {
+                console.log("here");
+                var check ="";
+                var op = document.getElementById("selection").selectedIndex;
+                $.get( "https://panibhengsri.github.io/comp20/songs.json", 
+                function( data ) {
+                
+                    strHTML= "";
 
-</script>
+                    data.forEach(function(song) { 
+                        if (op == 0)
+                        {
+                            strHTML = strHTML + "<ul>" 
+                            + "<li><strong>" + song.name + "</strong></li>"
+                            + "<li>" + "Album: " + song.album + "</li>"
+                            + "<li>" + "Artist: " + song.artist + "</li>"
+                            + "<li>" + "Genre: " + song.genre + "</li>"
+                            + "<li>" + "Released: " + song.year + "</li>"
+                            +"</ul>";
+                        }
+                        else{
+                            console.log("changed");
+                            check = document.getElementById("selection").options[op].text;
+                            console.log("check: " + check);
+                            console.log("genre: " + song.genre)
+                            console.log(song.genre.localeCompare(check) == 0);
+                            if (song.genre.localeCompare(check) == 0)
+                            {
+                                console.log(song.Genre);
+                                strHTML = strHTML + "<ul>" 
+                                + "<li><strong>" + song.title + "</strong></li>"
+                                + "<li>" + "Album: " + song.album + "</li>"
+                                + "<li>" + "Artist: " + song.artist + "</li>"
+                                + "<li>" + "Genre: " + song.genre + "</li>"
+                                + "<li>" + "Released: " + song.year + "</li>"
+                                +"</ul>";
+                            }
+
+                        }
+                        
+                    }) 
+                    document.getElementById("display").innerHTML = strHTML;  
+                })
+
+            }
+
+            window.onload = function()
+            {
+                document.getElementById("filt").addEventListener('click', function()
+                {
+                    genreClick();
+                })
+            }
+        </script>
 </head>
 
 <body>
-
-    <div class="wrapper">
-        <div class="profile">
-            <table id= "data" border="2">
-            <thead>
-                    <th>Name</th>
-                    <th>Album</th>
-                    <th>Artist</th>
-                    <th>Genre</th>
-                    <th>Year</th>
-            </thead>
-                <tbody>
+    <h1>Song Selector</h1>
+    <!-- <input type="button" value="VIEW ALL" id="show"> -->
+    <br>Pick Song Genre To Show:
+    <select name="sList" size="1"  id="selection" >
+        <option>VIEW ALL</option>
+        <option>RnB</option>
+        <option>HipHop</option>
+        <option>Pop</option>
+    </select>    
+    <input type="button" id="filt" value="FILTER"> 
+    <div id=display></div>
+	<script language="javascript">
         
-                </tbody>
-           </table>
-        
-        </div>
-    </div>
 
+        $.get( "https://panibhengsri.github.io/comp20/songs.json", 
+            function( data ) {
+                strHTML= "";
+
+            data.forEach(function(song) { 
+            strHTML = strHTML + "<ul>" 
+                    + "<li><strong>" + song.title + "</strong></li>"
+                    + "<li>" + "Album: " + song.album + "</li>"
+                    + "<li>" + "Artist: " + song.artist + "</li>"
+                    + "<li>" + "Genre: " + song.genre + "</li>"
+                    + "<li>" + "Released: " + song.year + "</li>"
+                    +"</ul>";
+                }) 
+        document.getElementById("display").innerHTML += strHTML;  
+        })
+
+
+    </script>
 </body>
-
 </html>
