@@ -8,8 +8,7 @@
 <script>
     
     $(function(){
-        var song = [];
-    
+        var songs = [];
         $.getJSON( 'songs.json', function( data ) {
             $.each(data.song, function (i,s){
                 var tableRow = "<tr>" + "<td>" + s.name + "</td>" + "<td>" + s.album
@@ -17,9 +16,7 @@
                 + "</td>" + "<td>" + s.year + "</td>" + "</tr>"
                 $(tableRow).appendTo("#data tbody");
             });
-
         });
-
     });
 
 </script>
