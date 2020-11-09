@@ -42,9 +42,9 @@ function loadFile(){
 
     <h1> hello </h1>
     <div id="data">Loading...</div>
-    
+
     <script language="javascript">
-    $.get( "ajax/songs.json", function( data ) {
+    $.getJSON( "songs.json", function( data ) {
         str = JSON.stringify(data);
         document.write(str);
         strHTML= "";
